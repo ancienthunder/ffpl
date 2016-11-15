@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap3.css')}}"/>
     <link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
     <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+      <link rel="stylesheet" href="{{=URL('static','css/results.css')}}" />
     <!-- All JavaScript at the bottom, except for Modernizr which enables
          HTML5 elements & feature detects -->
     <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
@@ -67,8 +68,9 @@
               {{=''}}
               {{pass}}
           </ul>
-          {{if response.menu:}}
-          {{MENU(response.menu, _class='nav navbar-nav',li_class='dropdown',ul_class='dropdown-menu')}}
+          {{if response.subtitle:}}
+          {{=MENU(response.menu, _class='nav navbar-nav',li_class='dropdown',ul_class='dropdown-menu')}}
+          {{=response.subtitle}}
           {{pass}}
         </div>
       </div>

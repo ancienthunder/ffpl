@@ -1,0 +1,14 @@
+{{extend 'layout.html'}}
+{{block left_sidebar}}
+<h1>This is the results.html template</h1>
+{{if 'message' in globals():}}
+<p>
+    <h2>
+     {{=BEAUTIFY(message)}}
+</h2>
+</p>
+{{pass}}
+{{if 'res' in globals():}}
+
+{{pass}}
+{{end}}

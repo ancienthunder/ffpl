@@ -7,7 +7,7 @@
 # - user is required for authentication and authorization
 # - download is for downloading files uploaded in the db (does streaming)
 # -------------------------------------------------------------------------
-import mutex
+import mutex, json, os
 global_mutex = mutex.mutex()
 
 @auth.requires_login()
@@ -117,6 +117,31 @@ def download():
     http://..../[app]/default/download/[filename]
     """
     return response.download(request, db)
+
+@auth.requires_login()
+def results():
+    msg = 'Results for this gameweek!'
+    current_gameweek = get_current_gameweek()
+    with open(os.path.join(request.folder, 'private', 'gameweek_results.json'), 'r') as df:
+        gw_res = json.load(df)
+    table = TABLE(*[TR(*rows) for rows in gw_res[current_gameweek]])
+    tables = []
+    cur_gameweek = gw_res[current_gameweek]
+    team_h = []
+    team_a = []
+    for i in xrange(0, 10, 2):
+        for j in xrange(0, len(cur_gameweek[i]), 2):
+            team_h.append([TD(cur_gameweek[i][j]), TD(cur_gameweek[i][j+1])])
+            team_a.append([TD(cur_gameweek[i+1][j]), TD(cur_gameweek[i+1][j+1])])
+        tables.append(TABLE(TR(team_h[k][0],team_a[k][0]) for k in range(len(team_h))))
+    #raise HTTP(200, str(cur_gameweek))
+    return dict(message='Results for this gameweek!', res=table)
+
+
+def get_current_gameweek():
+    with open(os.path.join(request.folder, 'private', 'gameweek.json'), 'r') as df:
+        gameweeks = json.load(df)
+    return str(gameweeks[-1])
 
 
 def call():

@@ -1,4 +1,4 @@
-{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{left_sidebar_enabled,right_sidebar_enabled=True, True}}
 {{extend 'layout.html'}}
 
 {{block header}}
@@ -11,7 +11,7 @@
       </div>
     </header>
 {{end}}
-
+{{block left_sidebar}}
 {{if 'message' in globals():}}
 <h2>{{=message}}</h2>
 <p class="lead">{{=T('Ready for this gameweek?')}}</p>
@@ -19,6 +19,7 @@
     {{if 'form' in globals():}}
         {{=form}}
 {{pass}}
+{{end}}
 </p>
 <!-- commenting these out
 <ol>
@@ -35,9 +36,9 @@
 </ol>
 -->
 {{elif 'content' in globals():}}
-{{=content}}
+{{content}}
 {{else:}}
-{{=BEAUTIFY(response._vars)}}
+{{BEAUTIFY(response._vars)}}
 {{pass}}
 
 {{block right_sidebar}}
