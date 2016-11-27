@@ -121,7 +121,7 @@ def download():
 @auth.requires_login()
 def results():
     msg = 'Results for this gameweek!'
-    current_gameweek = get_current_gameweek()
+    current_gameweek = 'GW12' #get_current_gameweek()
     with open(os.path.join(request.folder, 'private', 'gameweek_results.json'), 'r') as df:
         gw_res = json.load(df)
     table = TABLE(*[TR(*rows) for rows in gw_res[current_gameweek]])

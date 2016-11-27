@@ -121,7 +121,7 @@ def download():
 @auth.requires_login()
 def results():
     msg = 'Results for this gameweek!'
-    current_gameweek = get_current_gameweek()
+    current_gameweek = '12' #get_current_gameweek()
     with open(os.path.join(request.folder, 'private', 'gameweek_results.json'), 'r') as df:
         gw_res = json.load(df)
     table = TABLE(*[TR(*rows) for rows in gw_res[current_gameweek]])
@@ -135,7 +135,7 @@ def results():
             team_a.append([TD(cur_gameweek[i+1][j]), TD(cur_gameweek[i+1][j+1])])
         tables.append(TABLE(TR(team_h[k][0],team_a[k][0]) for k in range(len(team_h))))
     #raise HTTP(200, str(cur_gameweek))
-    return dict(message='Results for this gameweek!', res=table)
+    return dict(message='Results for this gameweek!', res=table, raw_res=cur_gameweek)
 
 
 def get_current_gameweek():
