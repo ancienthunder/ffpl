@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+{{if 'raw_res' in globals():}}
+{{for j in xrange(0, len(raw_res), 2):}}
+<table>
+    {{=TR(TH(raw_res[j][0]), TH("Score"), TH(raw_res[j+1][0]), TH("Score"))}}
+    {{for i in xrange(2, len(raw_res[0]), 2):}}
+    {{=TR(TD(raw_res[j][i]), TD(raw_res[j][i+1]), TD(raw_res[j+1][i]), TD(raw_res[j+1][i+1]))}}
+    {{pass}}
+</table>
+<br /> <br /><br />
+{{pass}}
+{{pass}}

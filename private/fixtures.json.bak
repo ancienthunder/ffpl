@@ -1,0 +1,4 @@
+{
+	"GW10": [["WHUFC", "CFC"], ["MCFC", "MUFC"], ["SFC", "LFC"], ["LCFC", "EFC"], ["THFC", "AFC"]],
+	"GW11": [["CFC", "MCFC"],  ["WHUFC", "SFC"], ["MUFC", "LCFC"], ["LFC", "THFC"], ["EFC", "AFC"]]
+}
